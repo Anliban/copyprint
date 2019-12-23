@@ -26,6 +26,11 @@ class MainActivity : DaggerAppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this@MainActivity
 
+        binding.recyclerView.apply {
+            adapter = MainAdapter(this@MainActivity, viewModel)
+            setHasFixedSize(true)
+        }
+
     }
 
 
