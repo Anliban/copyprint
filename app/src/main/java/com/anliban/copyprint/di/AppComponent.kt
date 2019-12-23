@@ -1,6 +1,7 @@
 package com.anliban.copyprint.di
 
 import com.anliban.copyprint.CopyPrintApplication
+import com.anliban.copyprint.domain.DomainModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -12,7 +13,9 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         ViewModelModule::class,
-        ActivityBindingModule::class
+        ActivityBindingModule::class,
+        AppModule::class,
+        DomainModule::class
     ]
 )
 interface AppComponent : AndroidInjector<CopyPrintApplication> {
