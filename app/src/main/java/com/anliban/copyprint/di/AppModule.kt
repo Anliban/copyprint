@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.anliban.copyprint.CopyPrintApplication
 import com.anliban.copyprint.data.db.CopyPrintDataBase
+import com.anliban.copyprint.util.ClipboardProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -26,4 +27,8 @@ class AppModule {
     @Singleton
     @Provides
     fun provideCopyDao(db: CopyPrintDataBase) = db.copyDao()
+
+    @Singleton
+    @Provides
+    fun provideClipboardProvider(context: Context) = ClipboardProvider(context)
 }

@@ -1,4 +1,4 @@
-package com.anliban.copyprint.data
+package com.anliban.copyprint.data.service
 
 import android.content.BroadcastReceiver
 import android.content.Context

@@ -25,13 +25,13 @@
         </activity>
 
         <service
-            android:name=".data.CopyService"
+            android:name=".data.service.CopyService"
             android:enabled="true"
             android:exported="false"
             android:label="ClipBoard Monitor" />
 
         <receiver
-            android:name=".data.CopyBootReceiver"
+            android:name=".data.service.CopyBootReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

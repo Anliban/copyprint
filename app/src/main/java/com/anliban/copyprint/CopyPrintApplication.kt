@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.work.Configuration
 import androidx.work.WorkManager
-import com.anliban.copyprint.data.CopyService
+import com.anliban.copyprint.data.service.CopyService
 import com.anliban.copyprint.data.worker.AppWorkerFactory
 import com.anliban.copyprint.di.DaggerAppComponent
 import dagger.android.AndroidInjector
@@ -20,7 +20,7 @@ class CopyPrintApplication : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         startService(this)
-        startWokrer()
+        startWorker()
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
@@ -36,9 +36,7 @@ class CopyPrintApplication : DaggerApplication() {
         }
     }
 
-    private fun startWokrer() {
-        //  val factory = DaggerAppComponent.factory()
-
+    private fun startWorker() {
         WorkManager.initialize(
             this,
             Configuration.Builder().setWorkerFactory(workerFactory).build()

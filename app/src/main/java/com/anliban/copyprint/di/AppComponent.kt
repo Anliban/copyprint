@@ -1,6 +1,7 @@
 package com.anliban.copyprint.di
 
 import com.anliban.copyprint.CopyPrintApplication
+import com.anliban.copyprint.data.service.ServiceModule
 import com.anliban.copyprint.data.worker.WorkerBindModule
 import com.anliban.copyprint.domain.DomainModule
 import dagger.BindsInstance
@@ -17,7 +18,8 @@ import javax.inject.Singleton
         ActivityBindingModule::class,
         AppModule::class,
         DomainModule::class,
-        WorkerBindModule::class
+        WorkerBindModule::class,
+        ServiceModule::class
     ]
 )
 interface AppComponent : AndroidInjector<CopyPrintApplication> {

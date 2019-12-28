@@ -30,7 +30,7 @@ class SaveClipboardWorker(
                     Result.success()
                 }
 
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
                 Result.failure()
             }
 
