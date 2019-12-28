@@ -17,8 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:background="?attr/selectableItemBackground"
+        android:foreground="?attr/selectableItemBackground"
         android:minHeight="40dp"
         android:onClick="@{() -> listener.onClick(item)}"
         android:paddingStart="24dp"
