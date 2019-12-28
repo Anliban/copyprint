@@ -9,7 +9,7 @@ import com.anliban.copyprint.data.db.entity.CopyEntityImpl
 @Dao
 interface CopyDao {
 
-    @Query("SELECT * from copy")
+    @Query("SELECT * from copy order by id DESC")
     suspend fun getCopyAll(): List<CopyEntityImpl>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
