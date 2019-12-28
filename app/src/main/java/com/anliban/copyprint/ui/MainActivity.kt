@@ -3,6 +3,7 @@ package com.anliban.copyprint.ui
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.anliban.copyprint.R
 import com.anliban.copyprint.databinding.ActivityMainBinding
 import com.anliban.copyprint.util.viewModelProvider
@@ -28,6 +29,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         binding.recyclerView.apply {
             adapter = MainAdapter(this@MainActivity, viewModel)
+            layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
         }
 

@@ -10,8 +10,8 @@ import com.anliban.copyprint.data.db.entity.CopyEntityImpl
 interface CopyDao {
 
     @Query("SELECT * from copy")
-    fun getCopyAll(): List<CopyEntityImpl>
+    suspend fun getCopyAll(): List<CopyEntityImpl>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun add(copy: CopyEntityImpl)
+    suspend fun add(copy: CopyEntityImpl)
 }

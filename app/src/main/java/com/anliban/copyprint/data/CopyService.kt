@@ -5,7 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-
+import com.anliban.copyprint.util.WorkUtil
 
 class CopyService : Service() {
 
@@ -14,6 +14,10 @@ class CopyService : Service() {
     private val clipboardListener = ClipboardManager.OnPrimaryClipChangedListener {
         val data = clipboardManager.primaryClip
         val text = data?.getItemAt(0)?.text
+
+        text?.let {
+            WorkUtil.saveClipboard(applicationContext, it.toString())
+        }
     }
 
     override fun onBind(p0: Intent?): IBinder? = null

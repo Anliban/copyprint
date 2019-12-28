@@ -21,7 +21,6 @@ class MainAdapter(
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
 }
 
 class MainViewHolder(

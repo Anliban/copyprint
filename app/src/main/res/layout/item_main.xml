@@ -28,6 +28,7 @@
             android:id="@+id/item_main_content"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
+            android:text="@{item.text}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

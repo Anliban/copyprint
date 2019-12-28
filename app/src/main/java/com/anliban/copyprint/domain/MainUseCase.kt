@@ -6,7 +6,7 @@ class MainUseCase constructor(
     private val repository: MainRepository
 ) {
 
-    fun copyList(): List<Copy> {
+    suspend fun copyList(): List<Copy> {
         return repository.copyList()
     }
 }

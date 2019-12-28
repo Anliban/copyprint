@@ -19,8 +19,14 @@ class MainActivityViewModel @Inject constructor(
         get() = _copyList
 
     init {
+
         viewModelScope.launch(Dispatchers.IO) {
-            _copyList.value = useCase.copyList()
+
+            val items = useCase.copyList()
+
+            launch(Dispatchers.Main) {
+                _copyList.value = items
+            }
         }
     }
 

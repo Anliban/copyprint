@@ -6,14 +6,14 @@ import com.anliban.copyprint.model.Copy
 import javax.inject.Inject
 
 interface MainRepository {
-    fun copyList(): List<Copy>
+    suspend fun copyList(): List<Copy>
 }
 
 class MainRepositoryImpl constructor(
     private val copyDao: CopyDao
 ) : MainRepository {
 
-    override fun copyList(): List<Copy> {
+    override suspend fun copyList(): List<Copy> {
         return copyDao.getCopyAll().toCopyList()
     }
 }
