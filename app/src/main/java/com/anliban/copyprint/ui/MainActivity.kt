@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anliban.copyprint.R
+import com.anliban.copyprint.base.adapter.GeryDividerItemDecoration
 import com.anliban.copyprint.databinding.ActivityMainBinding
 import com.anliban.copyprint.util.deleteDialog
 import com.anliban.copyprint.util.viewModelProvider
@@ -33,6 +34,7 @@ class MainActivity : DaggerAppCompatActivity() {
             adapter = MainAdapter(this@MainActivity, viewModel)
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
+            addItemDecoration(GeryDividerItemDecoration(this@MainActivity))
         }
 
         viewModel.openToDeleteDialog.observe(this, Observer {
