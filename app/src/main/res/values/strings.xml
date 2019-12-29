@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CopyPrint</string>
+    <string name="alert_positive">Yes</string>
+    <string name="alert_negative">No</string>
+    <string name="alert_delete_title">Delete</string>
+    <string name="alert_delete_message">Are you sure you want to delete?</string>
 </resources>

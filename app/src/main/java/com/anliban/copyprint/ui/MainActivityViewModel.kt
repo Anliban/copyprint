@@ -8,6 +8,7 @@ import com.anliban.copyprint.base.ClickListener
 import com.anliban.copyprint.domain.MainUseCase
 import com.anliban.copyprint.model.Copy
 import com.anliban.copyprint.util.ClipboardProvider
+import com.anliban.copyprint.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,19 +25,23 @@ class MainActivityViewModel @Inject constructor(
 
     val copyList: LiveData<PagedList<Copy>> = useCase.copyList(pagedConfig)
 
+    private val _openToDeleteDialog = SingleLiveEvent<Copy>()
+    val openToDeleteDialog: LiveData<Copy>
+        get() = _openToDeleteDialog
+
     override fun onClick(copy: Copy) {
         clipboardProvider.copy(copy.text)
     }
 
     override fun onItemLongClick(item: Copy) {
-        delete(item)
+        _openToDeleteDialog.value = item
     }
 
     fun refreshList() {
         copyList.value?.dataSource?.invalidate()
     }
 
-    private fun delete(item: Copy) {
+    fun delete(item: Copy) {
         viewModelScope.launch(Dispatchers.IO) {
             useCase.delete(item)
 
