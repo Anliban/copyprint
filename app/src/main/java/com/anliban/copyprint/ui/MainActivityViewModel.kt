@@ -1,15 +1,19 @@
 package com.anliban.copyprint.ui
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
 import com.anliban.copyprint.base.BaseViewModel
+import com.anliban.copyprint.base.ClickListener
 import com.anliban.copyprint.domain.MainUseCase
 import com.anliban.copyprint.model.Copy
 import com.anliban.copyprint.util.ClipboardProvider
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(
-    useCase: MainUseCase,
+    private val useCase: MainUseCase,
     private val clipboardProvider: ClipboardProvider
 ) : BaseViewModel(), MainEventListener {
 
@@ -24,12 +28,29 @@ class MainActivityViewModel @Inject constructor(
         clipboardProvider.copy(copy.text)
     }
 
+    override fun onItemLongClick(item: Copy) {
+        delete(item)
+    }
+
     fun refreshList() {
         copyList.value?.dataSource?.invalidate()
     }
+
+    private fun delete(item: Copy) {
+        viewModelScope.launch(Dispatchers.IO) {
+            useCase.delete(item)
+
+            launch(Dispatchers.Main) {
+                refreshList()
+            }
+        }
+    }
 }
 
-interface MainEventListener {
+interface MainEventListener : ClickListener {
 
     fun onClick(copy: Copy)
+
+    fun onItemLongClick(item: Copy)
+
 }

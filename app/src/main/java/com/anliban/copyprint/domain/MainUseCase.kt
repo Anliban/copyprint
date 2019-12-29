@@ -17,4 +17,8 @@ class MainUseCase constructor(
             config
         ).build()
     }
+
+    suspend fun delete(copy: Copy) {
+        repository.delete(copy)
+    }
 }

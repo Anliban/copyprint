@@ -1,10 +1,7 @@
 package com.anliban.copyprint.data.db.dao
 
 import androidx.paging.DataSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.anliban.copyprint.data.db.entity.CopyEntityImpl
 
 @Dao
@@ -15,4 +12,7 @@ interface CopyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(copy: CopyEntityImpl)
+
+    @Delete
+    suspend fun delete(copy: CopyEntityImpl)
 }

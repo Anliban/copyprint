@@ -6,3 +6,5 @@ import com.anliban.copyprint.model.Copy
 fun CopyEntityImpl.toCopy() = Copy(id = id, text = text, createdAt = createdAt)
 
 fun List<CopyEntityImpl>.toCopyList() = this.map { it.toCopy() }
+
+fun Copy.toCopyEntity() = CopyEntityImpl(id = id, text = text, createdAt = createdAt)

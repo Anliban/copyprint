@@ -22,7 +22,9 @@
         android:minHeight="40dp"
         android:onClick="@{() -> listener.onClick(item)}"
         android:paddingStart="24dp"
-        android:paddingEnd="24dp">
+        android:paddingEnd="24dp"
+        app:longClickCopy="@{listener}"
+        app:longClickCopyValue="@{item}">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_main_content"
