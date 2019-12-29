@@ -32,8 +32,11 @@ class MainActivity : DaggerAppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
         }
-
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshList()
+    }
 
 }

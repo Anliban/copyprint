@@ -23,6 +23,10 @@ class MainActivityViewModel @Inject constructor(
     override fun onClick(copy: Copy) {
         clipboardProvider.copy(copy.text)
     }
+
+    fun refreshList() {
+        copyList.value?.dataSource?.invalidate()
+    }
 }
 
 interface MainEventListener {
