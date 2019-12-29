@@ -18,12 +18,12 @@ class ClipboardProvider(context: Context) {
         if (!::listener.isInitialized) {
             val listener = ClipboardManager.OnPrimaryClipChangedListener {
                 val data = manager.primaryClip
-                val text = data?.getItemAt(CLIP_INDEX)?.text
+                val text = data?.getItemAt(CLIP_INDEX)?.text?.trim()
                 val label = data?.description?.label
 
                 if (label != CLIP_COPY_LABEL) {
-                    text?.let {
-                        action(it.toString())
+                    if (!text.isNullOrEmpty()) {
+                        action(text.toString())
                     }
                 }
             }
