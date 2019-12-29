@@ -3,8 +3,8 @@ package com.anliban.copyprint.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anliban.copyprint.databinding.ItemMainBinding
 import com.anliban.copyprint.model.Copy
@@ -12,7 +12,7 @@ import com.anliban.copyprint.model.Copy
 class MainAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val eventListener: MainEventListener
-) : ListAdapter<Copy, MainViewHolder>(DiffUtil) {
+) : PagedListAdapter<Copy, MainViewHolder>(DiffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val binding = ItemMainBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MainViewHolder(binding, lifecycleOwner, eventListener)
@@ -29,7 +29,7 @@ class MainViewHolder(
     private val eventListener: MainEventListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Copy) {
+    fun bind(item: Copy?) {
         binding.item = item
         binding.lifecycleOwner = lifecycleOwner
         binding.listener = eventListener

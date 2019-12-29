@@ -1,15 +1,11 @@
 package com.anliban.copyprint.ui
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.paging.PagedList
 import com.anliban.copyprint.base.BaseViewModel
 import com.anliban.copyprint.domain.MainUseCase
 import com.anliban.copyprint.model.Copy
 import com.anliban.copyprint.util.ClipboardProvider
-import com.anliban.copyprint.util.SingleLiveEvent
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(
@@ -17,21 +13,12 @@ class MainActivityViewModel @Inject constructor(
     private val clipboardProvider: ClipboardProvider
 ) : BaseViewModel(), MainEventListener {
 
-    private val _copyList = MutableLiveData<List<Copy>>()
-    val copyList: LiveData<List<Copy>>
-        get() = _copyList
+    private val pagedConfig = PagedList.Config.Builder()
+        .setPageSize(20)
+        .setEnablePlaceholders(true)
+        .build()
 
-    init {
-
-        viewModelScope.launch(Dispatchers.IO) {
-
-            val items = useCase.copyList()
-
-            launch(Dispatchers.Main) {
-                _copyList.value = items
-            }
-        }
-    }
+    val copyList: LiveData<PagedList<Copy>> = useCase.copyList(pagedConfig)
 
     override fun onClick(copy: Copy) {
         clipboardProvider.copy(copy.text)
